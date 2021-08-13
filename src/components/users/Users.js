@@ -13,7 +13,6 @@ export default function Users() {
             {
                 users.map(value => <User item={value} key={value.id}/>)
             }
-
         </div>
     );
 }

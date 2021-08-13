@@ -2,3 +2,6 @@
     background: grey;
     border: 5px solid black;
 }
+.user-posts{
+    border-top: 2px solid black;
+}
