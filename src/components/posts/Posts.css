@@ -1,0 +1,12 @@
+.posts-div{
+    display: flex;
+}
+
+.posts-box{
+    background: gold;
+    width: 50%;
+}
+.chosenPost{
+    background: cornflowerblue;
+    width: 50%;
+}
