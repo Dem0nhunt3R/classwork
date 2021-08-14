@@ -6,7 +6,7 @@ import Posts from "../posts/Posts";
 
 export default function Users() {
     let [users, setUsers] = useState([]);
-    let [user, setUser] = useState([]);
+    let [user, setUser] = useState(null);
     useEffect(() => {
         getUsers().then(value => setUsers([...value]));
     }, [])
