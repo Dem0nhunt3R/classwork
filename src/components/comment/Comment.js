@@ -1,8 +1,11 @@
-export default function Comment() {
-  return (
-    <div>
-    Comment
-
-    </div>
-  );
+export default function Comment({item, choseComment}) {
+    const onClickCommentChose = () => {
+        choseComment(item);
+    }
+    return (
+        <div>
+            Comment #{item.id}: {item.name}
+            <button onClick={onClickCommentChose}>comment details</button>
+        </div>
+    );
 }

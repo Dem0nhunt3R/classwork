@@ -1,0 +1,15 @@
+.wrap{
+    display: flex;
+}
+
+.wrap>div{
+    width: 50%;
+}
+
+.comments-box{
+    background: lightblue;
+}
+
+.comment-box{
+    background: greenyellow;
+}
