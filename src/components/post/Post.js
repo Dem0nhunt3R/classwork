@@ -4,7 +4,7 @@ export default function Post({item, chosePost}) {
     }
     return (
         <div>
-            -{item.title}
+            Post #{item.id}  -{item.title}
             <button onClick={onClickPostChose}>post details</button>
         </div>
     );
