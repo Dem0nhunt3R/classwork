@@ -4,7 +4,7 @@ export default function Comment({item, choseComment}) {
     }
     return (
         <div>
-            Comment #{item.id}: {item.name}
+            Comment #{item.id} title: {item.name}
             <button onClick={onClickCommentChose}>comment details</button>
         </div>
     );

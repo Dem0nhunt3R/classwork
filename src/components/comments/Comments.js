@@ -29,7 +29,7 @@ export default function Comments() {
             </div>
             {
                comment && <div className="comment-box">
-                   {comment.body}
+                   Comment #{comment.id} text ==========> {comment.body}
                 </div>
             }
         </div>
