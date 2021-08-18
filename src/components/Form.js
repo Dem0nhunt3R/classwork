@@ -3,11 +3,11 @@ import {getCars, saveCar} from "../services/api.service/api.service";
 import Car from "./Car";
 
 export default function Form() {
-    let [model, setModel] = useState('model');
-    let [price, setPrice] = useState('price');
-    let [year, setYear] = useState('year');
-    let [car, setCar] = useState({model: '', price: '', year: ''});
-    let [cars, setCars] = useState([]);
+    const [model, setModel] = useState('model');
+    const [price, setPrice] = useState('price');
+    const [year, setYear] = useState('year');
+    const [car, setCar] = useState(null);
+    const [cars, setCars] = useState([]);
 
     const onSubmitForm = (e) => {
         e.preventDefault();
@@ -29,8 +29,7 @@ export default function Form() {
     }
     useEffect(() => {
         getCars().then(value => setCars([...value]));
-    }, [])
-
+    }, [cars])
 
     return (
         <div>
@@ -39,15 +38,16 @@ export default function Form() {
                 <input type="number" name={'price'} placeholder='price' onInput={onInputChangePrice}/>
                 <input type="number" name={'year'} placeholder='year' onInput={onInputChangeYear}/>
                 <input type="submit" value={'save'}/>
+                {car && <div>
+                    {
+                        cars.map(value => <Car
+                            item={value}
+                            key={value.id}
+                        />)
+                    }
+                </div>}
             </form>
-            <div>
-                {
-                    cars.map(value => <Car
-                        item={value}
-                        key={value.id}
-                    />)
-                }
-            </div>
+
         </div>
     );
 }
