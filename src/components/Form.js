@@ -6,14 +6,13 @@ export default function Form() {
     const [model, setModel] = useState('model');
     const [price, setPrice] = useState('price');
     const [year, setYear] = useState('year');
-    const [car, setCar] = useState(null);
     const [cars, setCars] = useState([]);
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault();
         let tempCar = {model, price, year};
-        setCar({...tempCar});
-        saveCar(tempCar);
+        const createdCar = await saveCar(tempCar);
+        setCars([...cars, createdCar]);
     }
     const onInputChangeModel = (e) => {
         let tempModel = e.target.value
@@ -28,8 +27,8 @@ export default function Form() {
         setYear(tempYear);
     }
     useEffect(() => {
-        getCars().then(value => setCars([...value]));
-    }, [cars])
+        getCars().then(value => setCars(value));
+    }, [])
 
     return (
         <div>
@@ -38,16 +37,16 @@ export default function Form() {
                 <input type="number" name={'price'} placeholder='price' onInput={onInputChangePrice}/>
                 <input type="number" name={'year'} placeholder='year' onInput={onInputChangeYear}/>
                 <input type="submit" value={'save'}/>
-                {car && <div>
-                    {
-                        cars.map(value => <Car
-                            item={value}
-                            key={value.id}
-                        />)
-                    }
-                </div>}
             </form>
 
+            {cars && <div>
+                {
+                    cars.map(value => <Car
+                        item={value}
+                        key={value.id}
+                    />)
+                }
+            </div>}
         </div>
     );
 }
