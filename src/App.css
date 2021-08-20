@@ -1,0 +1,7 @@
+.appDiv{
+    display: flex;
+    height: 500px;
+}
+.appDiv>div{
+    width: 50%;
+}
