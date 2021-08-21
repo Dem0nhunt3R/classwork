@@ -10,7 +10,7 @@ export default function Car({item, deleteCar,formFill,editCar}) {
     }
     const onClickSaveEdit=()=>{
         console.log('edited')
-        editCar(item.id);
+        editCar();
     }
     return (
         <div>

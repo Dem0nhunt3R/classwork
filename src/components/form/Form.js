@@ -28,20 +28,11 @@ export default function Form() {
     const formFill = (item) => {
         setFormState({...formState, ...item})
     }
-    const editCar = async (id) => {
-        let tempCar={};
-        let tempCarsArray=cars;
-        await editCarApi({...formState}).then(value =>
+    const editCar =  () => {
+         editCarApi({...formState}).then(value =>
             {
-                tempCar.id=id;
-                tempCar.model=value.model;
-                tempCar.price=value.price;
-                tempCar.year=value.year;
-                console.log(tempCar)
-                tempCarsArray[id]=tempCar;
                 getCars().then(value1=>setCars(value1))
             })
-
     }
 
     return (
