@@ -20,9 +20,9 @@ export default function App() {
                 <br/>
                 <Link to={'/comments'}>comments</Link>
             </div>
-            <Route path={'/users'} render={() => {<Users/>}}/>
-            <Route path={'/posts'} render={() => {<Posts/>}}/>
-            <Route path={'/comments'} render={() => {<Comments/>}}/>
+            <Route path={'/users'} render={() => <Users/>}/>
+            <Route path={'/posts'} render={() => <Posts/>}/>
+            <Route path={'/comments'} render={() => <Comments/>}/>
 
         </Router>
     );
