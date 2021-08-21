@@ -3,8 +3,8 @@ import {deleteCarAPI, editCarApi, getCars, saveCars} from "../../services/car.se
 import {useEffect, useState} from "react";
 
 export default function Form() {
-    let [formState, setFormState] = useState({model: '', price: '', year: ''});
-    let [cars, setCars] = useState([]);
+    const [formState, setFormState] = useState({model: '', price: '', year: ''});
+    const [cars, setCars] = useState([]);
 
     const onFormInputChange = (e) => {
         setFormState({...formState, [e.target.name]: e.target.value})
@@ -22,17 +22,17 @@ export default function Form() {
     }, [])
     const deleteCar = (id) => {
         deleteCarAPI(id).then(value => console.log(value));
-        let filterCarsArray = cars.filter(value => (value.id !== id));
+        const filterCarsArray = cars.filter(value => (value.id !== id));
         setCars([...filterCarsArray]);
     };
     const formFill = (item) => {
         setFormState({...formState, ...item})
     }
-    const editCar =  () => {
-         editCarApi({...formState}).then(value =>
-            {
-                getCars().then(value1=>setCars(value1))
-            })
+    const editCar = () => {
+        editCarApi({...formState}).then(value => {
+            getCars().then(value1 => setCars(value1))
+        })
+
     }
 
     return (

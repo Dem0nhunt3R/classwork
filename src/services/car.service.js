@@ -1,8 +1,8 @@
 const url = 'http://91.201.233.14/api/v1/cars'
-const saveCars = ({model, price, year}) => {
+const saveCars = (item) => {
     return fetch(url, {
         method: 'POST',
-        body: JSON.stringify({model, price, year}),
+        body: JSON.stringify({...item}),
         headers: {
             'Content-type': 'application/json; charset = UTF-8'
         },
@@ -25,11 +25,7 @@ const editCarApi = (item) => {
     return fetch(url + '/' + item.id,
         {
             method: 'PUT',
-            body: JSON.stringify({
-                model: item.model,
-                price: item.price,
-                year: item.year
-            }),
+            body: JSON.stringify({...item}),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
