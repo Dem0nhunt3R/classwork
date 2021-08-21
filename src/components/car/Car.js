@@ -1,12 +1,16 @@
 import "./Car.css"
 
-export default function Car({item, deleteCar, editCar}) {
-
+export default function Car({item, deleteCar,formFill,editCar}) {
     const onClickCarDelete = () => {
         deleteCar(item.id)
     }
     const onClickCarEdit = () => {
-        editCar(item.id,item)
+        console.log(item)
+        formFill(item)
+    }
+    const onClickSaveEdit=()=>{
+        console.log('edited')
+        editCar(item.id);
     }
     return (
         <div>
@@ -14,6 +18,7 @@ export default function Car({item, deleteCar, editCar}) {
             <div>
                 <button className={'deleteBtn'} onClick={onClickCarDelete}>delete</button>
                 <button className={'editBtn'} onClick={onClickCarEdit}>edit</button>
+                <input type="submit" onClick={onClickSaveEdit}/>
             </div>
         </div>
     );

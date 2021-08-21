@@ -1,10 +1,8 @@
 import Car from "../car/Car";
 import {deleteCarAPI, editCarApi, getCars, saveCars} from "../../services/car.service";
-import {createRef, useEffect, useState} from "react";
-import {logDOM} from "@testing-library/react";
+import {useEffect, useState} from "react";
 
 export default function Form() {
-    let refObject = createRef();
     let [formState, setFormState] = useState({model: '', price: '', year: ''});
     let [cars, setCars] = useState([]);
 
@@ -27,15 +25,30 @@ export default function Form() {
         let filterCarsArray = cars.filter(value => (value.id !== id));
         setCars([...filterCarsArray]);
     };
-    const editCar=(id)=> {
-        console.log({...formState})
-        // editCarApi(id).then(value => console.log(value))
-        editCarApi(id).then(value => console.log(value))
+    const formFill = (item) => {
+        setFormState({...formState, ...item})
     }
-        return (
+    const editCar = async (id) => {
+        let tempCar={};
+        let tempCarsArray=cars;
+        await editCarApi({...formState}).then(value =>
+            {
+                tempCar.id=id;
+                tempCar.model=value.model;
+                tempCar.price=value.price;
+                tempCar.year=value.year;
+                console.log(tempCar)
+                tempCarsArray[id]=tempCar;
+                setCars(tempCarsArray)
+                getCars().then(value1=>setCars(value1))
+            })
+
+    }
+
+    return (
 
         <div>
-            <form onSubmit={saveCar} ref={refObject}>
+            <form onSubmit={saveCar}>
                 <input type="text" name={'model'} value={formState.model} placeholder={'model'}
                        onChange={onFormInputChange}/>
                 <input type="number" name={'price'} value={formState.price} placeholder={'price'}
@@ -44,15 +57,16 @@ export default function Form() {
                        onChange={onFormInputChange}/>
                 <input type="submit"/>
             </form>
+
             {cars && <div>
                 {
                     cars.map(value => <Car
                         item={value}
                         key={value.id}
                         deleteCar={deleteCar}
+                        formFill={formFill}
                         editCar={editCar}
                     />)
-
                 }
             </div>
             }
