@@ -1,10 +1,8 @@
 import './App.css';
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
     Link,
-    withRouter
 } from "react-router-dom"
 import Users from "./components/users/Users";
 import Posts from "./components/posts/Posts";
@@ -22,15 +20,9 @@ export default function App() {
                 <br/>
                 <Link to={'/comments'}>comments</Link>
             </div>
-            <Route path={'/users'} render={() => {
-                return <div><Users/></div>
-            }}/>
-            <Route path={'/posts'} render={() => {
-                return <div><Posts/></div>
-            }}/>
-            <Route path={'/comments'} render={() => {
-                return <div><Comments/></div>
-            }}/>
+            <Route path={'/users'} render={() => {<Users/>}}/>
+            <Route path={'/posts'} render={() => {<Posts/>}}/>
+            <Route path={'/comments'} render={() => {<Comments/>}}/>
 
         </Router>
     );
