@@ -39,7 +39,6 @@ export default function Form() {
                 tempCar.year=value.year;
                 console.log(tempCar)
                 tempCarsArray[id]=tempCar;
-                setCars(tempCarsArray)
                 getCars().then(value1=>setCars(value1))
             })
 
