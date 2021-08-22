@@ -1,4 +1,5 @@
 const url = 'http://91.201.233.14/api/v1/cars'
+
 const saveCars = (item) => {
     return fetch(url, {
         method: 'POST',
@@ -7,8 +8,9 @@ const saveCars = (item) => {
             'Content-type': 'application/json; charset = UTF-8'
         },
     })
-        .then(response => response.json())
+        .then(() => getCars())
 }
+
 const getCars = () => {
     return fetch(url)
         .then(response => response.json())
@@ -24,13 +26,13 @@ const deleteCarAPI = (id) => {
 const editCarApi = (item) => {
     return fetch(url + '/' + item.id,
         {
-            method: 'PUT',
+            method: 'PATCH',
             body: JSON.stringify({...item}),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-        .then((response) => response.json())
+        .then(() => getCars())
 }
 
 export {getCars, saveCars, deleteCarAPI,editCarApi}

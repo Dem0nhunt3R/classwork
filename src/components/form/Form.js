@@ -12,31 +12,35 @@ export default function Form() {
 
     const saveCar = async (e) => {
         e.preventDefault();
-        const tempCar = {...(formState)};
-        const createdCar = await saveCars(tempCar);
-        setCars([...cars, createdCar]);
+        let newArrCars;
+        formState.id
+            ? newArrCars = await editCarApi(formState)
+            : newArrCars = await saveCars(formState);
+        setCars(newArrCars);
+        setFormState({model: '', price: '', year: ''});
     }
 
     useEffect(() => {
         getCars().then(value => setCars(value))
     }, [])
-    const deleteCar = (id) => {
-        deleteCarAPI(id).then(value => console.log(value));
+
+    const deleteCar = async (id) => {
+        await deleteCarAPI(id);
         const filterCarsArray = cars.filter(value => (value.id !== id));
         setCars([...filterCarsArray]);
     };
+
     const formFill = (item) => {
         setFormState({...formState, ...item})
     }
-    const editCar = () => {
-        editCarApi({...formState}).then(value => {
-            getCars().then(value1 => setCars(value1))
-        })
 
+    const editCar = async () => {
+        await editCarApi({...formState});
+        const newArrCars = await getCars();
+        setCars(newArrCars);
     }
 
     return (
-
         <div>
             <form onSubmit={saveCar}>
                 <input type="text" name={'model'} value={formState.model} placeholder={'model'}
