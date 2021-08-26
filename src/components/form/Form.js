@@ -1,10 +1,13 @@
-import Car from "../car/Car";
+import Car, {formFilled} from "../car/Car";
 import {deleteCarAPI, editCarApi, getCars, saveCars} from "../../services/car.service";
 import {useEffect, useState} from "react";
 
 export default function Form() {
     const [formState, setFormState] = useState({model: '', price: '', year: ''});
     const [cars, setCars] = useState([]);
+    useEffect(() => {
+        getCars().then(value => setCars(value))
+    }, [])
 
     const onFormInputChange = (e) => {
         setFormState({...formState, [e.target.name]: e.target.value})
@@ -12,14 +15,18 @@ export default function Form() {
 
     const saveCar = async (e) => {
         e.preventDefault();
-        const tempCar = {...(formState)};
-        const createdCar = await saveCars(tempCar);
-        setCars([...cars, createdCar]);
+        const carData = {...(formState)};
+
+        if (formFilled) {
+            editCar();
+            console.log('edited')
+        } else {
+            let tempCar = await saveCars(carData);
+            setCars([...cars, tempCar]);
+            console.log('created');
+        }
     }
 
-    useEffect(() => {
-        getCars().then(value => setCars(value))
-    }, [])
     const deleteCar = (id) => {
         deleteCarAPI(id).then(value => console.log(value));
         const filterCarsArray = cars.filter(value => (value.id !== id));
@@ -27,9 +34,10 @@ export default function Form() {
     };
     const formFill = (item) => {
         setFormState({...formState, ...item})
+        return true;
     }
     const editCar = () => {
-        editCarApi({...formState}).then(value => {
+        editCarApi({...formState}).then(() => {
             getCars().then(value1 => setCars(value1))
         })
 
@@ -55,7 +63,6 @@ export default function Form() {
                         key={value.id}
                         deleteCar={deleteCar}
                         formFill={formFill}
-                        editCar={editCar}
                     />)
                 }
             </div>
