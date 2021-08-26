@@ -24,7 +24,7 @@ const deleteCarAPI = (id) => {
 const editCarApi = (item) => {
     return fetch(url + '/' + item.id,
         {
-            method: 'PUT',
+            method: 'PATCH',
             body: JSON.stringify({...item}),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',

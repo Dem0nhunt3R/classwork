@@ -1,6 +1,6 @@
-import Car, {formFilled} from "../car/Car";
 import {deleteCarAPI, editCarApi, getCars, saveCars} from "../../services/car.service";
 import {useEffect, useState} from "react";
+import {Car} from "../car/Car";
 
 export default function Form() {
     const [formState, setFormState] = useState({model: '', price: '', year: ''});
@@ -12,12 +12,11 @@ export default function Form() {
     const onFormInputChange = (e) => {
         setFormState({...formState, [e.target.name]: e.target.value})
     }
-
     const saveCar = async (e) => {
         e.preventDefault();
         const carData = {...(formState)};
 
-        if (formFilled) {
+        if (formState.id) {
             editCar();
             console.log('edited')
         } else {

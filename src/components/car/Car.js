@@ -1,13 +1,10 @@
 import "./Car.css"
-export let formFilled;
-export default function Car({item, deleteCar,formFill}) {
+const Car=({item, deleteCar,formFill,formFilled})=>{
     const onClickCarDelete = () => {
         deleteCar(item.id)
     }
     const onClickCarEdit = () => {
-        console.log(item);
-        formFilled=formFill(item);
-        console.log(formFilled);
+        formFill(item);
     }
 
     return (
@@ -20,3 +17,4 @@ export default function Car({item, deleteCar,formFill}) {
         </div>
     );
 }
+export {Car};
