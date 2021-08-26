@@ -1,12 +1,8 @@
 import {createRef, useEffect, useState} from "react";
 import {getUsers} from "../../services/user.service";
 import User from "../user/User";
-import {getPostsOfUser} from "../../services/post.service";
-import {UserPosts} from "../posts/Posts";
 
-export let postsArr = [];
-
-export default function UserSelectComponent() {
+export default function UserSelectComponent({getUserId}) {
     const formRef = createRef();
     const [users, setUsers] = useState([]);
     useEffect(() => {
@@ -14,16 +10,15 @@ export default function UserSelectComponent() {
             .then(value => setUsers(value))
     }, [])
 
+    let tempId;
     const selectedUser = () => {
-        let tempUserId = 0;
         getUsers().then(value => {
             for (const userName of value) {
                 if (userName.name === formRef.current.selected.value)
-                    tempUserId = userName.id
+                    tempId = userName.id;
             }
-            getPostsOfUser(tempUserId).then(value => postsArr.push(...value))
+            getUserId(tempId);
         })
-        UserPosts(postsArr);
     };
 
     return (
@@ -31,7 +26,9 @@ export default function UserSelectComponent() {
             <form ref={formRef}>
                 <select name={'selected'} onChange={selectedUser}>
                     {
-                        users.map(value => <User user={value.id} item={value}/>)
+                        users.map(value => <User
+                            key={value.id}
+                            item={value}/>)
                     }
                 </select>
             </form>

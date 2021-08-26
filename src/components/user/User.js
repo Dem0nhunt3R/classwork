@@ -1,3 +1,6 @@
 export default function User({item}) {
-    return (<option key={item.id} value={item.name}>{item.name} </option>);
+    return (<option
+        key={item.id}
+        value={item.name}>{item.name}
+    </option>);
 }

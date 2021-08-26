@@ -1,19 +1,9 @@
 import Post from "../post/Post";
-import {postsArr} from "../form/UserSelectComponent";
-let tempArr=[];
-const UserPosts=async (item)=> {
-    console.log(item);
-    await tempArr.push({...item});
-    console.log(tempArr);
-}
-const Posts=() =>{
+
+export default function Posts({item}) {
     return (
-        <div>
-            {
-                tempArr.map(value => <Post posts={value} key={value.id}
-                />)
-            }
+        <div className={'posts-box'}>
+            <Post posts={item}/>
         </div>
     );
 }
-export {UserPosts, Posts}
