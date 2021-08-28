@@ -22,7 +22,7 @@ export default function UpdateCar() {
     const onFormSubmit = async (e)=>{
         e.preventDefault();
         await editCars({...formState})
-        setFormState({model: '', price: '', year: ''})       // TODO скидаю інпути післязапиту
+        setFormState({model: '', price: '', year: ''})       // TODO скидаю інпути після запиту
     }
 
     return (
