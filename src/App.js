@@ -19,9 +19,9 @@ export default function UserDiv() {
                 <br/>
                 <Link to={'/update-car'}>update car</Link>
 
-                <Route path={'/cars'} render={()=> <Cars/>}></Route>
-                <Route path={'/create-car'} render={()=> <CreateCar/>}></Route>
-                <Route path={'/update-car'} render={()=> <UpdateCar/>}></Route>
+                <Route path={'/cars'} component={Cars}/>
+                <Route path={'/create-car'} component={CreateCar}/>
+                <Route path={'/update-car'} component={UpdateCar}/>
 
             </div>
         </Router>

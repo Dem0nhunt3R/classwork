@@ -3,14 +3,17 @@ import {createCars} from "../../services/car.service";
 
 export default function CreateCar() {
     const [formState, setFormState] = useState({model: '', price: '', year: ''});
+
     const onFormInputChange=(e)=>{
         setFormState({...formState,[e.target.name]:e.target.value})
     }
-    const createCarOnSubmit = (e) => {
+
+    const createCarOnSubmit = async (e) => {
         e.preventDefault();
-        const carData={...(formState)}
-        createCars(carData);
+        await createCars({...formState});
+        setFormState({model: '', price: '', year: ''})
     }
+
     return (
         <div>
             <form className={'createCarForm'} onSubmit={createCarOnSubmit}>
