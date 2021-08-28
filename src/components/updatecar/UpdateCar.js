@@ -28,6 +28,7 @@ export default function UpdateCar() {
         <div>
             <form onChange={getSelectedCar}>
                 <select>
+                    <option></option>
                     {
                         cars.map(value => <CarsSelectOption
                             key={value.id}
