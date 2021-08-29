@@ -10,11 +10,6 @@ function getPosts(){
         .then(value => value.json())
 }
 
-function getPostDetails(id){
-    return fetch(postUrl+'/'+id)
-        .then(value => value.json())
-}
-
-export {getPosts,getUsers,getPostDetails}
+export {getPosts,getUsers}
 
 

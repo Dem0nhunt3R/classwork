@@ -1,17 +1,11 @@
-import {getPostDetails} from "../../services/api.service";
-import {useEffect, useState} from "react";
+import {useLocation} from "react-router";
 
-export default function PostDetails(props) {
-    const {match: {params: {id}}} = props;
-    const [post,setPost] = useState({});
-
-    useEffect(()=>{
-        getPostDetails(id).then(value => setPost({...value}))
-    },[id])
+export default function PostDetails() {
+    const {state} = useLocation();
 
     return (
         <div>
-            {JSON.stringify(post.body)}
+            {JSON.stringify(state.body)}
         </div>
     );
 }
