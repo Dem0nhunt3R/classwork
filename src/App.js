@@ -1,9 +1,25 @@
 import './App.css';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+} from "react-router-dom"
+import Users from "./components/users/Users";
+import Posts from "./components/posts/Posts";
+import PostDetails from "./components/post-details/PostDetails";
 
 export default function UserDiv() {
     return (
-        <div>
-
-        </div>
+        <Router>
+            <Link to={'/users'}>users</Link>
+            <br/>
+            <Link to={'/posts'}>posts</Link>
+            <div>
+                <div>
+                    <Route path={'/users'} render={() => <Users/>}/>
+                    <Route path={'/posts'} render={() => <Posts/>}/>
+                </div>
+            </div>
+        </Router>
     );
 }
