@@ -5,30 +5,31 @@ import CarsSelectOption from "../selectedcar/CarsSelectOption";
 export default function UpdateCar() {
     const [formState, setFormState] = useState({model: '', price: '', year: ''});
     const [cars, setCars] = useState([]);
+
     useEffect(() => {
         getCars().then(value => setCars([...value]))
     }, [])
-    const getSelectedCar = (e) => {
-        const carId = e.target.value;
-        const filteredCar = (cars.filter(item => (item.id == carId)))
-        const car = filteredCar[0];
-        formFill(car);
+
+    const getSelectedCar = ({target: {value}}) => {
+        const car = cars.find(item => item.id === +value);
+        setFormState(car);
     }
-    const formFill = (car) => {
-        setFormState({...formState, ...car})
+
+    const onFormInputChange = (e) => {
+        setFormState({...formState, [e.target.name]: e.target.value})
     }
-    const onFormInputChange=(e)=>{
-        setFormState({...formState,[e.target.name]:e.target.value})
-    }
-    const onFormSubmit =(e)=>{
+
+    const onFormSubmit = async (e) => {
         e.preventDefault();
-        editCars({...formState});
+        await editCars({...formState});
+        setFormState({model: '', price: '', year: ''})
     }
+
     return (
         <div>
             <form onChange={getSelectedCar}>
                 <select>
-                    <option></option>
+                    <option>---------</option>
                     {
                         cars.map(value => <CarsSelectOption
                             key={value.id}

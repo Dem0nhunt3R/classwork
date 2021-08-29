@@ -14,13 +14,13 @@ const createCars = (item) => {
         .then((response) => response.json())
 }
 const editCars = (item) => {
-    fetch(url+'/'+item.id, {
+    return fetch(url + '/' + item.id, {
         method: 'PATCH',
         body: JSON.stringify({...item}),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         },
     })
-        .then((response) => response.json())
 }
-export {getCars, createCars,editCars}
+
+export {getCars, createCars, editCars}
