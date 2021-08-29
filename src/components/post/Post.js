@@ -4,7 +4,7 @@ export default function Post({item}) {
     return (
         <div>
             {item.title}---
-            <Link to={`/posts/${item.id}`}>postDetails</Link>
+            <Link to={{pathname:`/posts/${item.id}`, state: item}}>postDetails</Link>
         </div>
     );
 }
