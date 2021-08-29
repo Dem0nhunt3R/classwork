@@ -1,12 +1,10 @@
-import {Link, Route} from "react-router-dom";
-import PostDetails from "../post-details/PostDetails";
+import {Link} from "react-router-dom";
 
 export default function Post({item}) {
     return (
         <div>
             {item.title}---
-            <Link to={'/posts/postDetails'}>postDetails</Link>
-                <Route path={'/posts/postDetails'} component={PostDetails}/>
+            <Link to={`/posts/${item.id}`}>postDetails</Link>
         </div>
     );
 }
