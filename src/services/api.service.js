@@ -11,5 +11,3 @@ function getPosts(){
 }
 
 export {getPosts,getUsers}
-
-
