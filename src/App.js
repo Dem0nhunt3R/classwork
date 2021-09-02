@@ -1,6 +1,6 @@
 import './App.css';
 
-export default function UserDiv() {
+export default function App() {
     return (
         <div>
 
