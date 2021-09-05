@@ -1,0 +1,20 @@
+.receivedMovie{
+    background-color: wheat;
+    width: 90%;
+    margin-left: 50px;
+    display: flex;
+    height: 700px;
+}
+.overviewP{
+    width: 300px;
+    margin-top: 5px;
+}
+.posterAndRating{
+    width: 40%;
+}
+.xxx{
+    margin-bottom: 0;
+}
+.movieInfo{
+    margin-left: 10px;
+}

@@ -1,0 +1,16 @@
+.movieDiv {
+    background-color: greenyellow;
+    height: 300px;
+    width: 400px;
+}
+.moviesDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.moviesDiv>a{
+    width: 400px;
+    height: 300px;
+    margin: 20px 10px 10px 10px;
+
+}
