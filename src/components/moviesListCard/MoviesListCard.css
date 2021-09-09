@@ -1,12 +1,12 @@
 .receivedMovie{
     background-color: wheat;
-    width: 90%;
+    width: 1200px;
     margin-left: 50px;
     display: flex;
     height: 700px;
 }
 .overviewP{
-    width: 300px;
+    width: 600px;
     margin-top: 5px;
 }
 .posterAndRating{

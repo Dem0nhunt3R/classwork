@@ -3,19 +3,18 @@
 }
 .header {
     display: flex;
-    flex-wrap: wrap;
-    height: 80px;
+    height: 100px;
 }
 .select{
     height: 20px;
 }
-.searchForm{
+.searchMovieForm{
     height: 20px;
-    margin-left: 500px;
+    margin-left: 200px;
 }
 .leftListDiv{
     width: 100px;
-    height: 600px;
+    height: 700px;
     background: wheat;
     border-radius: 5px;
 }
@@ -40,4 +39,12 @@
 }
 .moviesDiv{
     margin-left: 50px;
+}
+.genres-badge{
+    display: flex;
+    justify-content: space-between;
+    background-color: wheat;
+    height: 40px;
+    border-radius: 10px;
+    width: 70%;
 }

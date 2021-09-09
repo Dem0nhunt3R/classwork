@@ -1,9 +1,11 @@
 import "./MoviesList.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getApiMovies} from "../../services/moviesApi.service";
 import {getMovies} from "../../redux/actions/actionsCreator";
-import{Link } from "react-router-dom"
+import {Link} from "react-router-dom"
+import Paginate from "../../pagination/Pagination";
+
 const backdropUrl = 'https://image.tmdb.org/t/p/w400';
 
 export default function MoviesList() {
@@ -11,33 +13,42 @@ export default function MoviesList() {
         const {moviesReducer} = state;
         return moviesReducer;
     });
+
     const {movies} = moviesState;
     const dispatch = useDispatch();
+    const [data, setData] = useState({});
 
     useEffect(() => {
         getApiMovies().then(value => {
-            console.log(value)
-            dispatch(getMovies([...value.results]))
+            dispatch(getMovies([...value.results]));
         })
     }, []);
-    const nextPage=()=>{
+    useEffect(()=>{
+        getApiMovies().then(value => {
+            console.log(value)
+            setData({...value})
+        })
+    },[]);
 
-    }
     return (
-        <div className={'moviesDiv'}>
-            {
-                movies.map(value =>
-                    <Link to={`/movies/${value.id}`} key={value.id}>
-                        <div className={'movieDiv'}>
-                            <img src={backdropUrl + value.backdrop_path} alt=""/>
-                            <p>{value.original_title}</p>
-                        </div>
-                    </Link>
-
-                )
-            }
-
-            <button onClick={nextPage}></button>
+        <div>
+            <div className={'moviesDiv'}>
+                {
+                    movies.map(value =>
+                        <Link to={`/movies/${value.id}`} key={value.id}>
+                            <div className={'movieDiv'}>
+                                <img src={backdropUrl + value.backdrop_path} alt=""/>
+                                <p>{value.original_title}</p>
+                            </div>
+                        </Link>
+                    )
+                }
+            </div>
+            <div>
+                <Paginate
+                    item={data}
+                />
+            </div>
         </div>
     );
 }
