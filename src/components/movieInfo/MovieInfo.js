@@ -17,7 +17,7 @@ export default function MovieInfo() {
                 setMovie({...value});
                 setMovieGenres([...value.genres]);
                 setProdCompanies([...value.production_companies]);
-                setProdCountries([...value.production_countries])
+                setProdCountries([...value.production_countries]);
             });
         }
 

@@ -1,10 +1,9 @@
 import "./MoviesList.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {getApiMovies} from "../../services/moviesApi.service";
 import {getMovies} from "../../redux/actions/actionsCreator";
 import {Link} from "react-router-dom"
-import Paginate from "../../pagination/Pagination";
 
 const backdropUrl = 'https://image.tmdb.org/t/p/w400';
 
@@ -16,19 +15,12 @@ export default function MoviesList() {
 
     const {movies} = moviesState;
     const dispatch = useDispatch();
-    const [data, setData] = useState({});
 
     useEffect(() => {
         getApiMovies().then(value => {
             dispatch(getMovies([...value.results]));
         })
     }, []);
-    useEffect(()=>{
-        getApiMovies().then(value => {
-            console.log(value)
-            setData({...value})
-        })
-    },[]);
 
     return (
         <div>
@@ -43,11 +35,6 @@ export default function MoviesList() {
                         </Link>
                     )
                 }
-            </div>
-            <div>
-                <Paginate
-                    item={data}
-                />
             </div>
         </div>
     );
